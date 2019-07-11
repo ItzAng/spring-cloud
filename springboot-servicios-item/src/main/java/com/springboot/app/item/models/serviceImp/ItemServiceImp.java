@@ -25,7 +25,7 @@ public class ItemServiceImp implements ItemService {
 		return productos.stream().map(a -> new Item(a, 1)).collect(Collectors.toList());
 //		return null;
 	}
-
+ 
 	@Override
 	public Item findById(Long id, Integer cantidad) {
 		// TODO Auto-generated method stub
