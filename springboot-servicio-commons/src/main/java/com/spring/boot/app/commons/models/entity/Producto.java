@@ -1,4 +1,4 @@
-package com.springboot.app.productos.models.entity;
+package com.spring.boot.app.commons.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;

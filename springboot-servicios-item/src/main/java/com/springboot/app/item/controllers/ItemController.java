@@ -8,14 +8,20 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.spring.boot.app.commons.models.entity.Producto;
 import com.springboot.app.item.models.Item;
-import com.springboot.app.item.models.Producto;
 import com.springboot.app.item.models.service.ItemService;
 
 @RefreshScope
@@ -23,7 +29,7 @@ import com.springboot.app.item.models.service.ItemService;
 public class ItemController {
 
 	@Autowired
-	@Qualifier("feign")
+	@Qualifier("serviceRestTemplate")
 	private ItemService itemService;
 
 	@Value("${configuracion.texto}")
@@ -76,4 +82,28 @@ public class ItemController {
 
 		return item;
 	}
+	
+	@PostMapping("/crear")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public Producto save(@RequestBody Producto producto) {
+		return itemService.save(producto);
+	}
+	
+	@DeleteMapping("/eliminar/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id ) {
+		
+		itemService.delete(id);
+	}
+	
+	@PutMapping("/editar/{id}")
+	@ResponseStatus(code=HttpStatus.CREATED)
+	public Producto editar(@RequestBody Producto producto , @PathVariable Long id) {
+//		Producto productoDB = productoService.findById(id);
+//		productoDB.setPrecio(producto.getPrecio());
+//		productoDB.setNombre(producto.getNombre());
+		
+		return itemService.update(producto,id);
+	}
+	
 }

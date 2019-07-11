@@ -1,6 +1,6 @@
 package com.springboot.app.item.models;
 
-import java.util.Date;
+import com.spring.boot.app.commons.models.entity.Producto;
 
 public class Item {
 
