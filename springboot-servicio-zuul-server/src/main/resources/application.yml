@@ -9,6 +9,9 @@ zuul:  routes:    productos:
     items:
       service-id:  servicio-item
       path: /api/items/**
+    usuarios:
+      service-id:  servicio-usuarios
+      path: /api/usuarios/**
 #hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 14000
 #ribbon:
 #  ConnectTimeout: 3000

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.spring.boot.app.commons.models.entity.usuarios"} )
+@EntityScan(basePackages = {"com.spring.boot.app.usuarios.commons.models.entity"} )
 public class SpringbootServicioUsuariosApplication {
 
 	public static void main(String[] args) {
