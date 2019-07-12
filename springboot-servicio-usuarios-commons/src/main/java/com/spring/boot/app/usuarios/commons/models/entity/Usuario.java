@@ -38,6 +38,16 @@ public class Usuario implements Serializable {
 	@Column(unique = true, length = 20)
 	private String username;
 	
+	private Integer intentos;
+	
+	public Integer getIntentos() {
+		return intentos;
+	}
+
+	public void setIntentos(Integer intentos) {
+		this.intentos = intentos;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable( joinColumns = @JoinColumn(name="usuario_id"),inverseJoinColumns = @JoinColumn(name="role_id")
 	, uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id","usuario_id"})} )

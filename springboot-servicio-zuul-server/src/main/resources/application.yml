@@ -12,7 +12,11 @@ zuul:  routes:    productos:
     usuarios:
       service-id:  servicio-usuarios
       path: /api/usuarios/**
-#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 14000
-#ribbon:
-#  ConnectTimeout: 3000
-#  ReadTimeout: 10000      
+    oauth:
+      service-id:  servicio-oauth
+      path: /api/security/**
+      sensitive-headers: Cookie,Set-Cookie
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 14000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 10000      
